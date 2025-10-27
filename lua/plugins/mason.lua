@@ -9,17 +9,29 @@ return {
     opts = {
       -- Make sure to use the names found in `:Mason`
       ensure_installed = {
-        -- install language servers
+        { "golangci-lint", version = "v2.5.0" },
         "lua-language-server",
-
-        -- install formatters
         "stylua",
-
-        -- install debuggers
         "debugpy",
-
-        -- install any other package
+        "elixir-ls",
+        "fish-lsp",
+        "bacon-ls",
+        "basics-language-server",
+        "gh-actions-language-server",
+        "nginx-language-server",
+        "postgrestools",
+        "biome",
         "tree-sitter-cli",
+      },
+    },
+  },
+  -- Prevent haskell-debug-adapter from being installed (fails with ghcup)
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    opts = {
+      handlers = {
+        -- Skip haskell-debug-adapter installation
+        ["haskell-debug-adapter"] = function() end,
       },
     },
   },

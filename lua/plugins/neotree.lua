@@ -2,36 +2,25 @@
 ---@type LazySpec
 return {
   "nvim-neo-tree/neo-tree.nvim",
-  config = function()
-    require("neo-tree").setup {
-      popup_border_style = "rounded",
-      filesystem = {
-        filtered_items = {
-          visible = false, -- show hidden files in alternate style
-          hide_dotfiles = false,
-          hide_gitignored = false,
-          hide_hidden = false, -- only works on Windows for hidden files/directories
-          hide_by_name = {
-            "node_modules",
-            "__pycache__",
-          },
-          hide_by_pattern = { -- uses glob style patterns
-            --"*/src/*/tsconfig.json",
-          },
-          always_show = { -- remains visible even if other settings would normally hide it
-            --".gitignored",
-          },
-          never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
-            ".DS_Store",
-            "__pycache__",
-            "thumbs.db",
-            ".pytest_cache",
-          },
-          never_show_by_pattern = { -- uses glob style patterns
-            --".null-ls_*",
-          },
-        },
-      },
-    }
+  opts = function(_, opts)
+    opts.popup_border_style = "rounded"
+
+    opts.indent = opts.indent or {}
+    opts.indent.padding = 1
+
+    opts.filesystem = opts.filesystem or {}
+    opts.filesystem.follow_current_file = opts.filesystem.follow_current_file or {}
+    opts.filesystem.follow_current_file.enabled = true
+
+    opts.filesystem.filtered_items = opts.filesystem.filtered_items or {}
+    local filtered = opts.filesystem.filtered_items
+    filtered.visible = false
+    filtered.hide_dotfiles = false
+    filtered.hide_gitignored = false
+    filtered.hide_hidden = false
+    filtered.hide_by_name = { "node_modules", "__pycache__" }
+    filtered.never_show = { ".DS_Store", "__pycache__", "thumbs.db", ".pytest_cache" }
+
+    return opts
   end,
 }

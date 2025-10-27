@@ -1,9 +1,7 @@
----@type LazySpec
 return {
   "catppuccin/nvim",
   name = "catppuccin",
   lazy = false,
-  ---@type CatppuccinOptions
   opts = {
     flavour = "mocha",
     integrations = {
@@ -58,15 +56,6 @@ return {
     },
   },
   specs = {
-    {
-      "akinsho/bufferline.nvim",
-      optional = true,
-      opts = function(_, opts)
-        return require("astrocore").extend_tbl(opts, {
-          highlights = require("catppuccin.groups.integrations.bufferline").get(),
-        })
-      end,
-    },
     {
       "nvim-telescope/telescope.nvim",
       optional = true,

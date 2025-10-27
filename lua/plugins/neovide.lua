@@ -24,15 +24,15 @@ return {
   ---@type AstroCoreOpts
   opts = {
     options = {
-      o = {
-        guifont = "Iosevka Nerd Font Mono:h16",
-        linespace = 1,
+      opt = {
+        guifont = "JetBrainsMonoNL Nerd Font:h14",
+        linespace = 2,
       },
       g = {
         smoothie_enabled = 0,
         -- neovide_text_gamma = 0.8,
         -- neovide_text_contrast = 0.1,
-        neovide_refresh_rate = 165,
+        neovide_refresh_rate = 240,
         neovide_increment_scale_factor = vim.g.neovide_increment_scale_factor or 0.1,
         neovide_min_scale_factor = vim.g.neovide_min_scale_factor or 0.7,
         neovide_max_scale_factor = vim.g.neovide_max_scale_factor or 2.0,
@@ -47,6 +47,10 @@ return {
         neovide_hide_mouse_when_typing = true,
         neovide_cursor_smooth_blink = true,
         -- neovide_cursor_trail_size = 0.8,
+        -- neovide_padding_top = 8,
+        -- neovide_padding_bottom = 8,
+        -- neovide_padding_right = 8,
+        -- neovide_padding_left = 8,
       },
     },
     commands = {
@@ -84,11 +88,10 @@ return {
           desc = "Decrease Neovide scale factor",
         },
         ["<C-0>"] = { reset_scale_factor, desc = "Reset Neovide scale factor" },
-        ["<C-s>"] = { ":w<CR>" },
         ["<C-v>"] = { "+P" },
       },
       i = {
-        ["<C-v>"] = { "<ESC>l+Pli" },
+        ["<C-v>"] = { "<C-r>+" },
       },
       v = {
         ["<C-v>"] = { "+P" },

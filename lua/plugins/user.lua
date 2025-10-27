@@ -4,7 +4,7 @@ return {
     "max397574/better-escape.nvim",
     event = "InsertCharPre",
     opts = {
-      timeout = vim.o.timeoutlen,
+      timeout = 150,
       default_mappings = true,
       mappings = {
         i = { k = { j = "<Esc>" } },
