@@ -25,7 +25,7 @@ return {
   opts = {
     options = {
       opt = {
-        guifont = "JetBrainsMonoNL Nerd Font:h14",
+        guifont = "JetBrainsMonoNL Nerd Font:h10",
         linespace = 2,
       },
       g = {
@@ -34,7 +34,7 @@ return {
         -- neovide_text_contrast = 0.1,
         neovide_refresh_rate = 240,
         neovide_increment_scale_factor = vim.g.neovide_increment_scale_factor or 0.1,
-        neovide_min_scale_factor = vim.g.neovide_min_scale_factor or 0.7,
+        neovide_min_scale_factor = vim.g.neovide_min_scale_factor or 0.6,
         neovide_max_scale_factor = vim.g.neovide_max_scale_factor or 2.0,
         neovide_initial_scale_factor = vim.g.neovide_scale_factor or 1,
         neovide_scale_factor = vim.g.neovide_scale_factor or 1,
@@ -51,6 +51,8 @@ return {
         -- neovide_padding_bottom = 8,
         -- neovide_padding_right = 8,
         -- neovide_padding_left = 8,
+        neovide_title_background_color = "#1e1e2e",
+        neovide_title_text_color = "#cdd6f4",
       },
     },
     commands = {
