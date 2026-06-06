@@ -5,7 +5,22 @@ return {
   opts = function(_, opts)
     local auto = require "lualine.themes.auto"
 
-    local colors = require("catppuccin.palettes").get_palette "mocha"
+    -- Statusline colors follow the active theme (see lua/theme.lua).
+    -- Only the six keys referenced below are needed.
+    local palettes = {
+      catppuccin = function() return require("catppuccin.palettes").get_palette "mocha" end,
+      everforest = function()
+        return { -- Everforest Dark Medium
+          surface0 = "#3d484d",
+          green = "#a7c080",
+          teal = "#83c092",
+          yellow = "#dbbc7f",
+          red = "#e67e80",
+          blue = "#7fbbb3",
+        }
+      end,
+    }
+    local colors = (palettes[require "theme"] or palettes.everforest)()
 
     local function separator()
       return {
