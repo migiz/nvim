@@ -19,16 +19,34 @@ return {
       format_on_save = {
         enabled = true, -- enable or disable format on save globally
       },
+      disabled = {
+        "basedpyright",
+        "lua_ls",
+        "svelte",
+        "vtsls",
+      },
+    },
+    servers = {
+      "eslint",
     },
     -- customize language server configurations
     config = {
       lua_ls = {
         settings = {
           Lua = {
+            format = {
+              enable = false,
+            },
             diagnostics = {
               disable = { "mixed_table", "missing-fields" },
             },
           },
+        },
+      },
+      eslint = {
+        settings = {
+          format = false,
+          workingDirectory = { mode = "auto" },
         },
       },
       -- rust_analyzer is handled by rustaceanvim via the rust pack

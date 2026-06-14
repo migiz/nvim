@@ -5,32 +5,28 @@ return {
   -- use mason-tool-installer for automatically installing Mason packages
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    -- overrides `require("mason-tool-installer").setup(...)`
-    opts = {
-      -- Make sure to use the names found in `:Mason`
-      ensure_installed = {
+    opts = function(_, opts)
+      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed or {}, {
         { "golangci-lint", version = "v2.5.0" },
+        "basedpyright",
+        "eslint-lsp",
+        "gopls",
+        "golangci-lint-langserver",
         "lua-language-server",
+        "marksman",
+        "prettier",
+        "ruff",
         "stylua",
-        "debugpy",
-        "elixir-ls",
-        "fish-lsp",
-        "bacon-ls",
-        "basics-language-server",
-        "gh-actions-language-server",
-        "nginx-language-server",
-        "postgrestools",
-        "biome",
+        "svelte-language-server",
         "tree-sitter-cli",
-      },
-    },
+        "vtsls",
+      })
+    end,
   },
-  -- Prevent haskell-debug-adapter from being installed (fails with ghcup)
   {
     "jay-babu/mason-nvim-dap.nvim",
     opts = {
       handlers = {
-        -- Skip haskell-debug-adapter installation
         ["haskell-debug-adapter"] = function() end,
       },
     },

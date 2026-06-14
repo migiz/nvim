@@ -7,7 +7,7 @@ return {
   ---@type AstroUIOpts
   opts = {
     -- Basic configuration
-    colorscheme = "catppuccin",
+    colorscheme = "catppuccin-nvim",
 
     icons = {
       LSPLoading1 = "⠋",

@@ -3,6 +3,8 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
+    explorer = { enabled = false },
+    words = { enabled = true },
     input = {
       icon = " ",
       icon_hl = "SnacksInputIcon",
@@ -30,9 +32,11 @@ return {
       },
       sources = {
         explorer = {
-          auto_close = true,
+          auto_close = false,
+          follow_file = true,
           hidden = true,
           ignored = true,
+          tree = true,
           win = {
             list = {
               keys = {
@@ -45,23 +49,8 @@ return {
             },
           },
           layout = {
-            preview = true,
-            cycle = true,
-            layout = {
-              box = "horizontal",
-              position = "float",
-              height = 0.95,
-              width = 0,
-              border = "rounded",
-              {
-                box = "vertical",
-                width = 40,
-                min_width = 40,
-                { win = "input", height = 1, title = "{title} {live} {flags}", border = "single" },
-                { win = "list" },
-              },
-              { win = "preview", width = 0, border = "left" },
-            },
+            preset = "sidebar",
+            preview = false,
           },
         },
       },
