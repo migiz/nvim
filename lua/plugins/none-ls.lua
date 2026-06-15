@@ -20,4 +20,31 @@ return {
       },
     })
   end,
+  specs = {
+    {
+      "jay-babu/mason-null-ls.nvim",
+      opts = function(_, opts)
+        local function default_setup(source_name, methods)
+          require("mason-null-ls").default_setup(source_name, methods)
+        end
+
+        opts.handlers = opts.handlers or {}
+        -- Keep Mason-installed stale formatters from silently registering with none-ls.
+        opts.handlers[1] = function() end
+
+        for _, source in ipairs {
+          "shellcheck",
+          "stylua",
+          "selene",
+          "gomodifytags",
+          "iferr",
+          "impl",
+          "gotests",
+          "goimports",
+        } do
+          if opts.handlers[source] == nil then opts.handlers[source] = default_setup end
+        end
+      end,
+    },
+  },
 }

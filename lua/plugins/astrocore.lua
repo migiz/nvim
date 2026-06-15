@@ -72,7 +72,7 @@ return {
     },
     mappings = {
       n = {
-        ["<Leader>w"] = { "<cmd>silent! wall<cr>", desc = "Save all" },
+        ["<Leader>w"] = { "<cmd>wall<cr>", desc = "Save all" },
         ["<Leader>fe"] = {
           function()
             Snacks.picker.explorer {
@@ -103,9 +103,6 @@ return {
           function() Snacks.notifier.show_history() end,
           desc = "Notification history",
         },
-      },
-      i = {
-        ["kj"] = { "<Esc>", desc = "Escape" },
       },
     },
   },
