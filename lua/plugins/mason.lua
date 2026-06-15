@@ -23,12 +23,4 @@ return {
       })
     end,
   },
-  {
-    "jay-babu/mason-nvim-dap.nvim",
-    opts = {
-      handlers = {
-        ["haskell-debug-adapter"] = function() end,
-      },
-    },
-  },
 }

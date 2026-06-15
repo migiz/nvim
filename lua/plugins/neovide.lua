@@ -1,5 +1,9 @@
 if not vim.g.neovide then return {} end
 
+-- transparent.nvim caches its toggle globally. Keep terminal sessions transparent,
+-- but make the Neovide GUI opaque without writing a new cached default.
+vim.g.transparent_enabled = false
+
 ---@param scale_factor number
 ---@return number
 local function clamp_scale_factor(scale_factor)
@@ -32,6 +36,8 @@ return {
         smoothie_enabled = 0,
         -- neovide_text_gamma = 0.8,
         -- neovide_text_contrast = 0.1,
+        neovide_opacity = 1.0,
+        neovide_normal_opacity = 1.0,
         neovide_refresh_rate = 240,
         neovide_increment_scale_factor = vim.g.neovide_increment_scale_factor or 0.1,
         neovide_min_scale_factor = vim.g.neovide_min_scale_factor or 0.6,

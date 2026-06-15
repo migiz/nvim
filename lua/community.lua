@@ -10,6 +10,7 @@ return {
   -- ----------------------------------------------
   { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.color.transparent-nvim" },
+  { import = "astrocommunity.utility.noice-nvim" },
   { import = "astrocommunity.bars-and-lines.lualine-nvim" },
   { import = "astrocommunity.bars-and-lines.dropbar-nvim" },
   { import = "astrocommunity.scrolling.vim-smoothie" },

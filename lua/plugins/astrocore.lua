@@ -99,6 +99,10 @@ return {
           end,
           desc = "Explorer browser",
         },
+        ["<Leader>un"] = {
+          function() Snacks.notifier.show_history() end,
+          desc = "Notification history",
+        },
       },
       i = {
         ["kj"] = { "<Esc>", desc = "Escape" },

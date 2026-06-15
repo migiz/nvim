@@ -3,6 +3,12 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
+    notifier = {
+      enabled = true,
+      timeout = 8000,
+      width = { min = 40, max = 0.8 },
+      height = { min = 1, max = 0.8 },
+    },
     explorer = { enabled = false },
     words = { enabled = true },
     input = {
@@ -41,6 +47,7 @@ return {
             list = {
               keys = {
                 ["h"] = "navigate_up",
+                ["<CR>"] = "confirm_and_close",
                 ["L"] = "confirm_and_close",
                 ["l"] = "confirm_nofocus",
                 ["J"] = { "preview_scroll_down", mode = { "i", "n" } },

@@ -1,6 +1,40 @@
 -- AstroLSP allows you to customize the features in AstroNvim's LSP configuration engine
 -- Configuration documentation can be found with `:h astrolsp`
 
+local function marksman_root_dir(bufnr, on_dir)
+  local root = vim.fs.root(bufnr, { ".marksman.toml" })
+  if root then on_dir(root) end
+end
+
+local function tailwindcss_root_dir(bufnr, on_dir)
+  if vim.bo[bufnr].filetype == "markdown" then return end
+
+  local util = require "lspconfig.util"
+  local fname = vim.api.nvim_buf_get_name(bufnr)
+  local root_files = {
+    "tailwind.config.js",
+    "tailwind.config.cjs",
+    "tailwind.config.mjs",
+    "tailwind.config.ts",
+    "postcss.config.js",
+    "postcss.config.cjs",
+    "postcss.config.mjs",
+    "postcss.config.ts",
+    "theme/static_src/tailwind.config.js",
+    "theme/static_src/tailwind.config.cjs",
+    "theme/static_src/tailwind.config.mjs",
+    "theme/static_src/tailwind.config.ts",
+    "theme/static_src/postcss.config.js",
+    ".git",
+  }
+
+  root_files = util.insert_package_json(root_files, "tailwindcss", fname)
+  root_files = util.root_markers_with_field(root_files, { "mix.lock", "Gemfile.lock" }, "tailwind", fname)
+
+  local root_file = vim.fs.find(root_files, { path = fname, upward = true })[1]
+  if root_file then on_dir(vim.fs.dirname(root_file)) end
+end
+
 ---@type LazySpec
 return {
   "AstroNvim/astrolsp",
@@ -49,7 +83,24 @@ return {
           workingDirectory = { mode = "auto" },
         },
       },
-      -- rust_analyzer is handled by rustaceanvim via the rust pack
+      marksman = {
+        -- Avoid indexing every Markdown file in a large Git root. Add a
+        -- .marksman.toml to a notes/docs root when cross-file Markdown LSP is wanted.
+        root_dir = marksman_root_dir,
+      },
+      tailwindcss = {
+        -- Tailwind's default Markdown support can scan broad Git roots while editing prose.
+        root_dir = tailwindcss_root_dir,
+      },
+      rust_analyzer = {
+        -- rust_analyzer is started by rustaceanvim, but it merges these AstroLSP settings.
+        settings = {
+          ["rust-analyzer"] = {
+            -- The Rust community pack defaults this to clippy; keep editor checks lighter.
+            check = { command = "check", extraArgs = {} },
+          },
+        },
+      },
     },
   },
 }
