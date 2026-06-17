@@ -106,8 +106,8 @@ return {
       },
       x = {
         -- Wrap a visual-line selection in a ```` ``` ```` fenced code block.
-        -- Lives alongside mini.surround's `gs` add operator (see plugins/mini-surround.lua).
-        ["gsa"] = {
+        -- Visual-mode only, so the builtin Normal-mode `ga` (:ascii) is left intact.
+        ["ga"] = {
           function()
             local s, e = vim.fn.line "v", vim.fn.line "."
             if s > e then

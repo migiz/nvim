@@ -1,7 +1,7 @@
 -- mini.surround with ergonomic `gs` mappings (the default `gz`/`s` prefixes are
 -- awkward to reach). `gs<char>` wraps a Visual selection; `gs<motion><char>` works
 -- in Normal mode; `gsd`/`gsr` delete/replace an existing surround. The Visual-mode
--- `gsa` (fence a selection in a ``` block) is defined in astrocore mappings.
+-- `ga` (fence a selection in a ``` block) is defined in astrocore mappings.
 
 ---@type LazySpec
 return {
