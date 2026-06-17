@@ -32,6 +32,7 @@ return {
   { import = "astrocommunity.lsp.garbage-day-nvim" },
   { import = "astrocommunity.motion.mini-basics" },
   { import = "astrocommunity.motion.mini-ai" },
+  { import = "astrocommunity.motion.mini-surround" },
   -- ----------------------------------------------
   -- Packs
   -- --------------------------------------------
