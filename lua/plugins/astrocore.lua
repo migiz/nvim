@@ -104,6 +104,22 @@ return {
           desc = "Notification history",
         },
       },
+      x = {
+        -- Wrap a visual-line selection in a ```` ``` ```` fenced code block.
+        ["gzc"] = {
+          function()
+            local s, e = vim.fn.line "v", vim.fn.line "."
+            if s > e then
+              s, e = e, s
+            end
+            vim.cmd [[execute "normal! \<Esc>"]]
+            vim.api.nvim_buf_set_lines(0, e, e, false, { "```" })
+            vim.api.nvim_buf_set_lines(0, s - 1, s - 1, false, { "```" })
+            vim.api.nvim_win_set_cursor(0, { s, 0 })
+          end,
+          desc = "Fence selection in code block",
+        },
+      },
     },
   },
 }
