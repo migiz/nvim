@@ -106,7 +106,8 @@ return {
       },
       x = {
         -- Wrap a visual-line selection in a ```` ``` ```` fenced code block.
-        ["gzc"] = {
+        -- Lives alongside mini.surround's `gs` add operator (see plugins/mini-surround.lua).
+        ["gsa"] = {
           function()
             local s, e = vim.fn.line "v", vim.fn.line "."
             if s > e then
