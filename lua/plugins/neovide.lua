@@ -29,7 +29,7 @@ return {
   opts = {
     options = {
       opt = {
-        guifont = "JetBrainsMonoNL Nerd Font:h10",
+        guifont = "JetBrainsMonoNL Nerd Font:h11",
         linespace = 2,
       },
       g = {
@@ -52,7 +52,7 @@ return {
         -- neovide_light_radius = 8,
         neovide_hide_mouse_when_typing = true,
         neovide_cursor_smooth_blink = true,
-        -- neovide_cursor_trail_size = 0.8,
+        neovide_cursor_trail_size = 0.8,
         -- neovide_padding_top = 8,
         -- neovide_padding_bottom = 8,
         -- neovide_padding_right = 8,
