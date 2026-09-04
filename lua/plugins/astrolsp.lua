@@ -1,6 +1,20 @@
 -- AstroLSP allows you to customize the features in AstroNvim's LSP configuration engine
 -- Configuration documentation can be found with `:h astrolsp`
 
+-- Middle-ground inlay hints for vtsls and svelte-language-server: parameter
+-- names on literal args and return/property types on, but variable and
+-- parameter type hints off (Effect-style types make those span multiple lines).
+local function inlay_hints()
+  return {
+    enumMemberValues = { enabled = true },
+    functionLikeReturnTypes = { enabled = true },
+    parameterNames = { enabled = "literals" },
+    parameterTypes = { enabled = false },
+    propertyDeclarationTypes = { enabled = true },
+    variableTypes = { enabled = false },
+  }
+end
+
 local function marksman_root_dir(bufnr, on_dir)
   local root = vim.fs.root(bufnr, { ".marksman.toml" })
   if root then on_dir(root) end
@@ -91,6 +105,20 @@ return {
       tailwindcss = {
         -- Tailwind's default Markdown support can scan broad Git roots while editing prose.
         root_dir = tailwindcss_root_dir,
+      },
+      vtsls = {
+        settings = {
+          typescript = { inlayHints = inlay_hints() },
+          javascript = { inlayHints = inlay_hints() },
+          -- Truncate long hints so wide types don't wrap across lines.
+          vtsls = { experimental = { maxInlayHintLength = 30 } },
+        },
+      },
+      svelte = {
+        settings = {
+          typescript = { inlayHints = inlay_hints() },
+          javascript = { inlayHints = inlay_hints() },
+        },
       },
       rust_analyzer = {
         -- rust_analyzer is started by rustaceanvim, but it merges these AstroLSP settings.
