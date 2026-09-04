@@ -29,7 +29,7 @@ return {
   opts = {
     options = {
       opt = {
-        guifont = "JetBrainsMonoNL Nerd Font:h11",
+        guifont = "Iosevka Nerd Font Mono:h12",
         linespace = 2,
       },
       g = {
