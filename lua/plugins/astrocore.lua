@@ -103,6 +103,15 @@ return {
           function() Snacks.notifier.show_history() end,
           desc = "Notification history",
         },
+        -- `<C-h>`/`<C-l>` are split navigation, so horizontal scrolling gets Alt.
+        ["<M-h>"] = {
+          function() require("hscroll").scroll(-1) end,
+          desc = "Scroll half a screen left",
+        },
+        ["<M-l>"] = {
+          function() require("hscroll").scroll(1) end,
+          desc = "Scroll half a screen right",
+        },
       },
       x = {
         -- Wrap a visual-line selection in a ```` ``` ```` fenced code block.

@@ -35,6 +35,12 @@ return {
           picker:action "confirm"
           picker:focus()
         end,
+        preview_hscroll_left = function(picker)
+          if picker.preview.win:valid() then require("hscroll").scroll(-1, picker.preview.win.win) end
+        end,
+        preview_hscroll_right = function(picker)
+          if picker.preview.win:valid() then require("hscroll").scroll(1, picker.preview.win.win) end
+        end,
       },
       sources = {
         explorer = {
@@ -44,14 +50,19 @@ return {
           ignored = true,
           tree = true,
           win = {
+            -- The preview has no editable cursor, so let it scroll sideways
+            -- freely instead of stopping at the end of the cursor's line.
+            preview = { wo = { virtualedit = "all" } },
             list = {
               keys = {
                 ["h"] = "navigate_up",
                 ["<CR>"] = "confirm_and_close",
-                ["L"] = "confirm_and_close",
                 ["l"] = "confirm_nofocus",
+                -- `H`/`L` pair with `J`/`K` to scroll the preview; `<CR>` still confirms and closes.
                 ["J"] = { "preview_scroll_down", mode = { "i", "n" } },
                 ["K"] = { "preview_scroll_up", mode = { "i", "n" } },
+                ["H"] = { "preview_hscroll_left", mode = { "i", "n" } },
+                ["L"] = { "preview_hscroll_right", mode = { "i", "n" } },
               },
             },
           },
